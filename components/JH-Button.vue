@@ -1,5 +1,5 @@
 <template>
-    <b-button @click="buttonClick" :type="[btnType, 'is-light']" :disabled="btnDisabled">{{ text }}</b-button>
+    <b-button @click="buttonClick" :type="buttonType" :disabled="btnDisabled">{{ text }}</b-button>
 </template>
 <script>
     export default {
@@ -24,6 +24,11 @@
       methods: {
         buttonClick(){
           this.$emit("btn", this.text)
+        }
+      },
+      computed:{
+        buttonType(){
+          return `${this.btnType} is-light`
         }
       },
       emits: ['btn']

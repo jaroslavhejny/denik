@@ -1,25 +1,30 @@
 <template>
-    <JH-Button  class="no-ads" :text="text" @btn="noAdsHandler" :btn-disabled="noAds" :btn-type="btnType"/>
+    <JH-Button  class="no-ads" :text="text" @btn="noAdsHandler" :btn-disabled="!isCorrect" :btn-type="btnType"/>
 </template>
 <script lang="ts">
 import  Vue from "vue"
 export default Vue.extend({
     name: "NoAds",
+    props: {
+    isCorrect: {
+      type: Boolean,
+      default: false
+    }
+  },
     data(){
         return {
-            noAds: false,
             text: "Bez reklam",
         }
     },
     computed: {
         btnType(): String{
-            return this.noAds ? "is-info" : "is-danger"
+            return this.isCorrect ? "is-success" : "is-danger"
         }
     },
     methods: {
-        noAdsHandler(text: String){
-            this.noAds = !this.noAds
-        },
+        noAdsHandler() {
+            console.log("click")
+        }
     }
 })
 </script>

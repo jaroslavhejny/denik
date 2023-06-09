@@ -1,24 +1,29 @@
 <template>
 <div class="main">
   <h1>{{ text }}</h1>
-  <JH-Input :is-correct="true" />
+  <JH-Input :is-correct="inputIsValid" @isValid="isValid" />
   <url-button />
-  <no-ads />
+  <no-ads :isCorrect="inputIsValid"/>
 </div>
 </template>
 
 <script lang="ts">
-export default{
+import  Vue from "vue"
+
+export default Vue.extend({
   name: 'IndexPage',
   data(){
         return {
           text: "Deník bez reklam",
+          inputIsValid: false
         }
       },
   methods: {
-    
+    isValid(isValid: boolean){
+      this.inputIsValid = isValid
+    }
   }
-}
+})
 </script>
 <style lang="scss" scoped>
   .main {

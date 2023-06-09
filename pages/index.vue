@@ -3,7 +3,7 @@
   <h1>{{ text }}</h1>
   <JH-Input :is-correct="inputIsValid" @isValid="isValid" />
   <url-button />
-  <no-ads :isCorrect="inputIsValid"/>
+  <no-ads :isCorrect="inputIsValid" @openUrl="openUrl"/>
 </div>
 </template>
 
@@ -15,12 +15,23 @@ export default Vue.extend({
   data(){
         return {
           text: "Deník bez reklam",
-          inputIsValid: false
+          inputIsValid: false,
+          noAdParam: "?demoseznam",
+          url: ""
         }
       },
   methods: {
-    isValid(isValid: boolean){
+    isValid(isValid: boolean, url: string){
+      
       this.inputIsValid = isValid
+      if (isValid){
+        const {origin, pathname} = new URL(encodeURI(url));
+        this.url =`${origin}${pathname}${this.noAdParam}`
+      }
+    },
+    openUrl(){
+      window.open(this.url, "_blank")
+
     }
   }
 })

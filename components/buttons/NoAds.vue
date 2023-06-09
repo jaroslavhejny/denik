@@ -23,7 +23,7 @@ export default Vue.extend({
     },
     methods: {
         noAdsHandler() {
-            console.log("click")
+            this.$emit("openUrl");
         }
     }
 })

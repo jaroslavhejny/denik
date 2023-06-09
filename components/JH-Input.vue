@@ -23,7 +23,7 @@ export default Vue.extend({
   methods: {
     checkDenik(value){
       const isValid = value.indexOf("denik.cz") > -1;
-      this.$emit("isValid", isValid);
+      this.$emit("isValid", isValid, this.value);
     }
   },
   computed: {

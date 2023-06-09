@@ -1,6 +1,6 @@
 <template>
-  <b-field  class="grid" :type="inputType">
-    <b-input custom-class="jh-input" placeholder="url zde" v-model="value" @input="checkDenik" />
+  <b-field  class="grid" :type="inputType" >
+    <b-input custom-class="jh-input" placeholder="url zde" :value="fromClipboard" @input="checkDenik"/>
   </b-field>
 </template>
 
@@ -13,17 +13,21 @@ export default Vue.extend({
     isCorrect: {
       type: Boolean,
       default: false
+    },
+    fromClipboard: {
+      type: String,
+      default: ""
     }
   },
   data(){
     return {
-      value: "text",
     }
   },
   methods: {
     checkDenik(value){
+      this.$emit("inputValue", value);
       const isValid = value.indexOf("denik.cz") > -1;
-      this.$emit("isValid", isValid, this.value);
+      this.$emit("isValid", isValid, value);
     }
   },
   computed: {

@@ -2,19 +2,28 @@
   <JH-Button class="grid" :text="text" @btn="enterUrlHandler" />
 </template>
 <script lang="ts">
-    export default {
+import  Vue from "vue"
+
+export default Vue.extend({
         name: "UrlButton",
         data(){
             return {
-                text: "Vložit URL"
+                text: "Vložit URL",
+                clipboard: ""
             }
         },
         methods: {
-            enterUrlHandler(text: String){
-                console.log("button-click", text)
+            async enterUrlHandler(){
+                try {
+                    this.clipboard = await navigator.clipboard.readText();
+                    this.$emit("clipboard", this.clipboard)
+                }
+                catch(e){
+                    console.log("e",e)
+                }
             },
         }
-    }
+    })
 </script>
 <style lang="scss" scoped>
   .grid {

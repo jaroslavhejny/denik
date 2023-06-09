@@ -1,8 +1,6 @@
 export default {
-  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'denik-adverts',
     htmlAttrs: {
@@ -17,32 +15,37 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  css: [
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: [
     '~/components',
     { path: '~/components/buttons', extensions: ['vue'] }
   ],
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'nuxt-buefy',
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  plugins: [
+    '~/plugins/fontawesome.js'
+  ],
+
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    postcss: {
+      plugins: {
+        "postcss-custom-properties": false
+      },
+    },
+  },
 }

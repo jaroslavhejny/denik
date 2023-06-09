@@ -4,7 +4,7 @@
   </b-field>
 </template>
 
-<script>
+<script lang="ts">
 import  Vue from "vue"
 
 export default Vue.extend({
@@ -24,10 +24,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    checkDenik(value){
+    checkDenik(value: string){
       this.$emit("inputValue", value);
-      const isValid = value.indexOf("denik.cz") > -1;
-      this.$emit("isValid", isValid, value);
     }
   },
   computed: {

@@ -1,5 +1,5 @@
 <template>
-    <b-button @click="buttonClick" :type="buttonType" :disabled="btnDisabled">{{ text }}</b-button>
+    <b-button @click="buttonClick" :type="buttonType" :disabled="btnDisabled">{{ text }}<slot></slot></b-button>
 </template>
 <script>
     export default {
@@ -7,7 +7,7 @@
       props: {
         text: {
           type: String,
-          default: "button"
+          default: ""
         },
         btnDisabled: {
           type: Boolean,

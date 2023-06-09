@@ -2,13 +2,13 @@
 <div class="main">
   <h1>{{ text }}</h1>
   <JH-Input :is-correct="inputIsValid" @inputValue="clipboard" :fromClipboard="fromClipboard" />
+  <delete-btn @deleteUrl="deleteUrl"/>
   <url-button @clipboard="clipboard"/>
   <no-ads :isCorrect="inputIsValid" @openUrl="openUrl"/>
 </div>
 </template>
 
 <script lang="ts">
-import { match } from "assert";
 import  Vue from "vue"
 
 export default Vue.extend({
@@ -40,15 +40,21 @@ export default Vue.extend({
       this.fromClipboard = value;
       this.isValid(value);
     },
+    deleteUrl(){
+      this.clipboard("")
+    }
   }
 })
 </script>
 <style lang="scss" scoped>
   .main {
-    margin: 10px;
     display: grid;
-    grid-template-areas: "header header" "input input" "url-button open-url";
+    grid-template-areas: "header header header header header header header header" 
+    "input input input input input input input input" 
+    "delete url-button url-button url-button open-url open-url open-url open-url";
     gap: 5px; 
+    max-width: 700px;
+    margin: 10px auto;
   }
 
   h1 {

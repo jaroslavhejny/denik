@@ -18,7 +18,7 @@ export default Vue.extend({
     },
     computed: {
         btnType(): String{
-            return this.isCorrect ? "is-success" : "is-danger"
+            return this.isCorrect ? "is-success" : "is-warning"
         }
     },
     methods: {
